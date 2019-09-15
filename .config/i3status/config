@@ -1,0 +1,57 @@
+general {
+        colors = true
+        interval = 5
+        color_good = '#ffffff'
+	color_degraded = '#ebcb8b'
+	color_bad = '#ba5e57'
+}
+
+order += "load"
+order += "cpu_temperature 0"
+order += "disk /"
+order += "disk /home"
+order += "ethernet enp4s0"
+order += "wireless wlp5s0"
+order += "volume master"
+order += "tztime local"
+
+load {
+        format = " %5min Load"
+}
+
+cpu_temperature 0 {
+        format = " %degrees °C"
+        path = "/sys/class/hwmon/hwmon1/temp1_input"
+}
+
+disk "/" {
+        format = " %free Free"
+}
+
+disk "/home" {
+        format = " %free Free"
+}
+
+ethernet enp4s0 {
+        format_up = " %ip"
+        format_down = " Disconnected"
+}
+
+wireless wlp5s0 {
+        format_up = " %essid"
+        format_down = " Disconnected"
+}
+
+volume master {
+        format = " %volume"
+        format_muted = " Muted"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+tztime local {
+		format = "%time"
+		format_time = " %a %-d %b %H:%M"
+}
+
